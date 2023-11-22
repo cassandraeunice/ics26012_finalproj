@@ -40,6 +40,7 @@ public class HomePage extends JFrame implements ActionListener{
         cScan.setBorderPainted(false);
         cScan.setFont(poppins.deriveFont(30f));
         cScan.setBounds(217, 281, 265, 80);
+        cScan.addActionListener(this);
 
         priority = new JButton("Priority (NP)");
         priority.setForeground(Color.decode("#FFFFFF"));
@@ -47,6 +48,7 @@ public class HomePage extends JFrame implements ActionListener{
         priority.setBorderPainted(false);
         priority.setFont(poppins.deriveFont(30f));
         priority.setBounds(217, 397, 265, 80);
+        priority.addActionListener(this);
 
         rRobin = new JButton("Round Robin");
         rRobin.setForeground(Color.decode("#FFFFFF"));
@@ -54,6 +56,7 @@ public class HomePage extends JFrame implements ActionListener{
         rRobin.setBorderPainted(false);
         rRobin.setFont(poppins.deriveFont(30f));
         rRobin.setBounds(217, 513, 265, 80);
+        rRobin.addActionListener(this);
 
         add(lbl1);
         add(lbl2);
@@ -64,7 +67,7 @@ public class HomePage extends JFrame implements ActionListener{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.decode("#ebeafc"));
         setVisible(true);
-        setSize(700,700);
+        setSize(700,750);
         setLocationRelativeTo(null);
     }
 
@@ -74,6 +77,10 @@ public class HomePage extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Handle button click or other actions here
+        if (e.getSource() == rRobin) {
+
+            RoundRobin roundRobin = new RoundRobin();
+            this.dispose();
+        }
     }
 }

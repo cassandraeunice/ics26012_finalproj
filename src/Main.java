@@ -49,7 +49,7 @@ public class Main extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.decode("#ebeafc"));
         setVisible(true);
-        setSize(700,700);
+        setSize(700,750);
         setLocationRelativeTo(null);
     }
 
