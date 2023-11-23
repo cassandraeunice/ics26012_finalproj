@@ -78,9 +78,20 @@ public class HomePage extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == rRobin) {
-
             RoundRobin roundRobin = new RoundRobin();
             this.dispose();
+        }
+
+        else if (e.getSource() == priority) {
+            PriorityNonPreemp priorityNonPreemp = new PriorityNonPreemp();
+            this.dispose();
+
+        }
+
+        else if (e.getSource() == cScan) {
+            CircularScan circularScan = new CircularScan();
+            this.dispose();
+
         }
     }
 }

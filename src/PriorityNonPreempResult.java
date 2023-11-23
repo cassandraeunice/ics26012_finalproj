@@ -4,18 +4,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
 
-public class RoundRobinResult extends JFrame implements ActionListener {
+public class PriorityNonPreempResult extends JFrame implements ActionListener {
 
     Font poppins;
     JLabel lbl1;
     JButton btnBack, btnClear;
 
-    JTextArea rRobinResult;
+    JTextArea prioResult;
 
-    public RoundRobinResult() {
-        super("Round Robin Results");
+    public PriorityNonPreempResult() {
+        super("Priority (Non-Preemptive) Results");
         setLayout(null);
 
         try {
@@ -26,10 +25,10 @@ public class RoundRobinResult extends JFrame implements ActionListener {
             e.printStackTrace();
         }
 
-        lbl1 = new JLabel("Round Robin Results");
+        lbl1 = new JLabel("Priority (Non-Preemptive) Results");
         lbl1.setForeground(Color.decode("#474184"));
-        lbl1.setFont(poppins.deriveFont(40f));
-        lbl1.setBounds(143, 72, 414, 60);
+        lbl1.setFont(poppins.deriveFont(34f));
+        lbl1.setBounds(53, 81, 595, 53);
 
         btnBack = new JButton("Back");
         btnBack.setForeground(Color.decode("#FFFFFF"));
@@ -39,12 +38,12 @@ public class RoundRobinResult extends JFrame implements ActionListener {
         btnBack.setBounds(20, 24, 100, 40);
         btnBack.addActionListener(this);
 
-        rRobinResult = new JTextArea();
-        rRobinResult.setForeground(Color.decode("#FFFFFF"));
-        rRobinResult.setBackground(Color.decode("#6A659F"));
-        rRobinResult.setBorder(null);
-        rRobinResult.setFont(poppins.deriveFont(15f));
-        rRobinResult.setBounds(50, 145, 600, 500);
+        prioResult = new JTextArea();
+        prioResult.setForeground(Color.decode("#FFFFFF"));
+        prioResult.setBackground(Color.decode("#6A659F"));
+        prioResult.setBorder(null);
+        prioResult.setFont(poppins.deriveFont(15f));
+        prioResult.setBounds(50, 145, 600, 500);
 
         btnClear = new JButton("Clear");
         btnClear.setForeground(Color.decode("#FFFFFF"));
@@ -57,7 +56,7 @@ public class RoundRobinResult extends JFrame implements ActionListener {
         add(lbl1);
         add(btnBack);
         add(btnClear);
-        add(rRobinResult);
+        add(prioResult);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.decode("#ebeafc"));
@@ -65,11 +64,10 @@ public class RoundRobinResult extends JFrame implements ActionListener {
         setSize(700, 750);
         setLocationRelativeTo(null);
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnBack) {
-            RoundRobin roundRobin = new RoundRobin();
+            PriorityNonPreemp priorityNonPreemp = new PriorityNonPreemp();
             this.dispose();
         }
     }

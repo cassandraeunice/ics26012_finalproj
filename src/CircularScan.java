@@ -4,20 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.Queue;
 
-public class RoundRobin extends JFrame implements ActionListener {
+public class CircularScan extends JFrame implements ActionListener {
+
     Font poppins;
 
-    JLabel lbl1, lbl2, lbl3, lbl4, lbl5, lbl6;
+    JLabel lbl1, lbl2, lbl3, lbl4, lbl5, lbl6, lbl7;
 
-    JTextField tfield1, tfield2, tfield3;
+    JTextField tfield1, tfield2, tfield3, tfield4, tfield5;
 
     JButton btnEnter, btnBack, btnGenerate, btnClear;
 
-    public RoundRobin() {
-        super("Round Robin");
+    public CircularScan() {
+        super("Circular Scan");
         setLayout(null);
 
         try {
@@ -28,65 +27,82 @@ public class RoundRobin extends JFrame implements ActionListener {
             e.printStackTrace();
         }
 
-        lbl1 = new JLabel("Round Robin");
+        lbl1 = new JLabel("Circular Scan");
         lbl1.setForeground(Color.decode("#474184"));
         lbl1.setFont(poppins.deriveFont(40f));
-        lbl1.setBounds(221, 24, 257, 60);
+        lbl1.setBounds(212, 52, 275, 60);
 
         lbl2 = new JLabel("No. of input processes:");
         lbl2.setForeground(Color.decode("#474184"));
         lbl2.setFont(poppins.deriveFont(18f));
-        lbl2.setBounds(160, 109, 229, 27);
+        lbl2.setBounds(130, 141, 220, 23);
 
         tfield1 = new JTextField();
         tfield1.setForeground(Color.decode("#FFFFFF"));
         tfield1.setBackground(Color.decode("#6A659F"));
         tfield1.setBorder(null);
         tfield1.setFont(poppins.deriveFont(18f));
-        tfield1.setBounds(395, 102, 80, 40);
+        tfield1.setBounds(360, 132, 65, 40);
 
         lbl3 = new JLabel("<html><i>Input individual arrival time:</i></html>");
         lbl3.setForeground(Color.decode("#474184"));
         lbl3.setFont(poppins.deriveFont(15f));
-        lbl3.setBounds(105, 161, 217, 23);
+        lbl3.setBounds(145, 190, 217, 23);
 
-        lbl4 = new JLabel("<html><i>Input individual burst time:</i></html>");
+        lbl4 = new JLabel("<html><i>Input current position:</i></html>");
         lbl4.setForeground(Color.decode("#474184"));
         lbl4.setFont(poppins.deriveFont(15f));
-        lbl4.setBounds(386, 161, 208, 23);
-
-        // Other labels and text fields
-
-        lbl5 = new JLabel("<html><i>Input time slice:</i></html>");
-        lbl5.setForeground(Color.decode("#474184"));
-        lbl5.setFont(poppins.deriveFont(15f));
-        lbl5.setBounds(229, 573, 122, 23);
+        lbl4.setBounds(375, 277, 170, 23);
 
         tfield2 = new JTextField();
         tfield2.setForeground(Color.decode("#FFFFFF"));
         tfield2.setBackground(Color.decode("#6A659F"));
         tfield2.setBorder(null);
-        tfield2.setFont(poppins.deriveFont(18f));
-        tfield2.setBounds(370, 565, 100, 40);
+        tfield2.setFont(poppins.deriveFont(15f));
+        tfield2.setBounds(555, 272, 50, 30);
 
-        lbl6 = new JLabel("<html><i>Input time slice:</i></html>");
-        lbl6.setForeground(Color.decode("#474184"));
-        lbl6.setFont(poppins.deriveFont(15f));
-        lbl6.setBounds(229, 573, 122, 23);
+        lbl5 = new JLabel("<html><i>Input track size:</i></html>");
+        lbl5.setForeground(Color.decode("#474184"));
+        lbl5.setFont(poppins.deriveFont(15f));
+        lbl5.setBounds(375, 322, 121, 23);
 
         tfield3 = new JTextField();
         tfield3.setForeground(Color.decode("#FFFFFF"));
         tfield3.setBackground(Color.decode("#6A659F"));
         tfield3.setBorder(null);
-        tfield3.setFont(poppins.deriveFont(18f));
-        tfield3.setBounds(370, 565, 100, 40);
+        tfield3.setFont(poppins.deriveFont(15f));
+        tfield3.setBounds(511, 318, 50, 30);
+
+        lbl6 = new JLabel("<html><i>Input seek rate:</i></html>");
+        lbl6.setForeground(Color.decode("#474184"));
+        lbl6.setFont(poppins.deriveFont(15f));
+        lbl6.setBounds(375, 371, 120, 23);
+
+        tfield4 = new JTextField();
+        tfield4.setForeground(Color.decode("#FFFFFF"));
+        tfield4.setBackground(Color.decode("#6A659F"));
+        tfield4.setBorder(null);
+        tfield4.setFont(poppins.deriveFont(18f));
+        tfield4.setBounds(511, 364, 50, 30);
+
+        lbl7 = new JLabel("<html><i>Input alpha:</i></html>");
+        lbl7.setForeground(Color.decode("#474184"));
+        lbl7.setFont(poppins.deriveFont(15f));
+        lbl7.setBounds(375, 416, 95, 23);
+
+        tfield5 = new JTextField();
+        tfield5.setForeground(Color.decode("#FFFFFF"));
+        tfield5.setBackground(Color.decode("#6A659F"));
+        tfield5.setBorder(null);
+        tfield5.setFont(poppins.deriveFont(18f));
+        tfield5.setBounds(486, 410, 50, 30);
 
         btnEnter = new JButton("Enter");
         btnEnter.setForeground(Color.decode("#FFFFFF"));
         btnEnter.setBackground(Color.decode("#6A659F"));
         btnEnter.setBorderPainted(false);
-        btnEnter.setFont(poppins.deriveFont(20f));
-        btnEnter.setBounds(500, 102, 100, 40);
+        btnEnter.setFont(poppins.deriveFont(15f));
+        btnEnter.setBounds(455, 132, 75, 40);
         btnEnter.addActionListener(this);
 
         btnBack = new JButton("Back");
@@ -119,9 +135,12 @@ public class RoundRobin extends JFrame implements ActionListener {
         add(lbl4);
         add(lbl5);
         add(lbl6);
+        add(lbl7);
         add(tfield1);
         add(tfield2);
         add(tfield3);
+        add(tfield4);
+        add(tfield5);
         add(btnEnter);
         add(btnBack);
         add(btnGenerate);
@@ -140,6 +159,7 @@ public class RoundRobin extends JFrame implements ActionListener {
         SwingUtilities.invokeLater(RoundRobin::new);
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnEnter) {
             int numOfProcesses = Integer.parseInt(tfield1.getText());
@@ -154,46 +174,31 @@ public class RoundRobin extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == btnGenerate) {
-            RoundRobinResult roundRobinResult = new RoundRobinResult();
+            CircularScanResult circularScanResult = new CircularScanResult();
             this.dispose();
         }
 
     }
 
     private void addLabelsAndTextFields(int numOfProcesses) {
-        int labelXOffset = 145; // X coordinate for labels
-        int textFieldXOffset = 189; // X coordinate for text fields
+        int labelXOffset = 185; // X coordinate for labels
+        int textFieldXOffset = 240; // X coordinate for text fields
 
         for (int i = 1; i <= numOfProcesses; i++) {
             // Arrival Time (AT) labels and text fields
-            JLabel atLabel = new JLabel("AT" + i + ":");
-            atLabel.setForeground(Color.decode("#474184"));
-            atLabel.setFont(poppins.deriveFont(15f));
-            atLabel.setBounds(labelXOffset, 200 + (i - 1) * 39, 35, 23);
-            add(atLabel);
+            JLabel locLabel = new JLabel("Loc " + i + ":");
+            locLabel.setForeground(Color.decode("#474184"));
+            locLabel.setFont(poppins.deriveFont(15f));
+            locLabel.setBounds(labelXOffset, 240 + (i - 1) * 39, 45, 23);
+            add(locLabel);
 
-            JTextField atTextField = new JTextField();
-            atTextField.setForeground(Color.decode("#FFFFFF"));
-            atTextField.setBackground(Color.decode("#6A659F"));
-            atTextField.setBorder(null);
-            atTextField.setFont(poppins.deriveFont(15f));
-            atTextField.setBounds(textFieldXOffset, 197 + (i - 1) * 39, 50, 30);
-            add(atTextField);
-
-            // Burst Time (BT) labels and text fields
-            JLabel btLabel = new JLabel("BT" + i + ":");
-            btLabel.setForeground(Color.decode("#474184"));
-            btLabel.setFont(poppins.deriveFont(15f));
-            btLabel.setBounds(labelXOffset + 282, 200 + (i - 1) * 39, 35, 23);
-            add(btLabel);
-
-            JTextField btTextField = new JTextField();
-            btTextField.setForeground(Color.decode("#FFFFFF"));
-            btTextField.setBackground(Color.decode("#6A659F"));
-            btTextField.setBorder(null);
-            btTextField.setFont(poppins.deriveFont(15f));
-            btTextField.setBounds(textFieldXOffset + 282, 197 + (i - 1) * 39, 50, 30);
-            add(btTextField);
+            JTextField locTextField = new JTextField();
+            locTextField.setForeground(Color.decode("#FFFFFF"));
+            locTextField.setBackground(Color.decode("#6A659F"));
+            locTextField.setBorder(null);
+            locTextField.setFont(poppins.deriveFont(15f));
+            locTextField.setBounds(textFieldXOffset, 233 + (i - 1) * 39, 50, 30);
+            add(locTextField);
         }
     }
 }

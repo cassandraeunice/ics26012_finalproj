@@ -4,9 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
 
-public class RoundRobinResult extends JFrame implements ActionListener {
+public class CircularScanResult extends JFrame implements ActionListener {
 
     Font poppins;
     JLabel lbl1;
@@ -14,8 +13,8 @@ public class RoundRobinResult extends JFrame implements ActionListener {
 
     JTextArea rRobinResult;
 
-    public RoundRobinResult() {
-        super("Round Robin Results");
+    public CircularScanResult() {
+        super("Circular Scan Result");
         setLayout(null);
 
         try {
@@ -26,10 +25,10 @@ public class RoundRobinResult extends JFrame implements ActionListener {
             e.printStackTrace();
         }
 
-        lbl1 = new JLabel("Round Robin Results");
+        lbl1 = new JLabel("Circular Scan Results");
         lbl1.setForeground(Color.decode("#474184"));
         lbl1.setFont(poppins.deriveFont(40f));
-        lbl1.setBounds(143, 72, 414, 60);
+        lbl1.setBounds(134, 75, 435, 60);
 
         btnBack = new JButton("Back");
         btnBack.setForeground(Color.decode("#FFFFFF"));
@@ -69,7 +68,7 @@ public class RoundRobinResult extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnBack) {
-            RoundRobin roundRobin = new RoundRobin();
+            CircularScan circularScan = new CircularScan();
             this.dispose();
         }
     }
